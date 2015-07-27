@@ -1,2 +1,2 @@
-# actalyzer
+# Actalyzer
 Activities Analyzer
