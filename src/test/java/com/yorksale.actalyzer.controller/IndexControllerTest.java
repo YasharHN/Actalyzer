@@ -1,6 +1,6 @@
-package com.ys.spring1.controller;
+package com.yorksale.actalyzer.controller;
 
-import com.ys.spring1.AppInitializer;
+import com.yorksale.actalyzer.AppInitializer;
 import com.yorksale.actalyzer.config.AppConfig;
 import com.yorksale.actalyzer.config.WebMvcConfig;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -24,11 +24,8 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 
 
 /**
- * Created with IntelliJ IDEA.
- * User: yashar
- * Date: 2014-03-01
- * Time: 9:22 PM
- * To change this template use File | Settings | File Templates.
+ * Created by Yashar HN
+ * Date: 29/07/15 2:55 PM
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppInitializer.class, AppConfig.class, WebMvcConfig.class})

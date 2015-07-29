@@ -5,11 +5,8 @@ import org.springframework.context.annotation.*;
 import org.springframework.stereotype.Controller;
 
 /**
- * Created with IntelliJ IDEA.
- * User: yashar
- * Date: 2014-03-01
- * Time: 7:39 PM
- * To change this template use File | Settings | File Templates.
+ * Created by Yashar HN
+ * Date: 29/07/15 2:55 PM
  */
 @Configuration
 @ComponentScan(basePackages = {"com.yorksale.actalyzer"}, excludeFilters = @ComponentScan.Filter(

@@ -10,11 +10,8 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: yashar
- * Date: 2014-03-01
- * Time: 7:44 PM
- * To change this template use File | Settings | File Templates.
+ * Created by Yashar HN
+ * Date: 29/07/15 2:55 PM
  */
 @Controller
 public class IndexController {

@@ -6,11 +6,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- * Created with IntelliJ IDEA.
- * User: yashar
- * Date: 2014-03-01
- * Time: 7:42 PM
- * To change this template use File | Settings | File Templates.
+ * Created by Yashar HN
+ * Date: 29/07/15 2:55 PM
  */
 @EnableWebMvc
 @Configuration
