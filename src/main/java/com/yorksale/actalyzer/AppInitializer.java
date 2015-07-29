@@ -30,7 +30,7 @@ public class AppInitializer implements WebApplicationInitializer {
 
     private AnnotationConfigWebApplicationContext getContext() {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.setConfigLocation("com.ys.spring1");
+        context.setConfigLocation("com.yorksale.actalyzer");
         return context;
     }
 

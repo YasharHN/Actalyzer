@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
  * To change this template use File | Settings | File Templates.
  */
 @Configuration
-@ComponentScan(basePackages = {"com.ys.spring1"}, excludeFilters = @ComponentScan.Filter(
+@ComponentScan(basePackages = {"com.yorksale.actalyzer"}, excludeFilters = @ComponentScan.Filter(
         value= Controller.class,
         type = FilterType.ANNOTATION
 ))

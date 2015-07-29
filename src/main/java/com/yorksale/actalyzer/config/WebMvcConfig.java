@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  */
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages = {"com.ys.spring1.controller"})
+@ComponentScan(basePackages = {"com.yorksale.actalyzer.controller"})
 public class WebMvcConfig extends WebMvcConfigurerAdapter
 {
 }

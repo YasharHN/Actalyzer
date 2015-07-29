@@ -1,10 +1,5 @@
 package com.yorksale.actalyzer.service;
 
-import org.elasticsearch.action.delete.DeleteResponse;
-import org.elasticsearch.action.get.GetResponse;
-import org.elasticsearch.action.index.IndexResponse;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.common.xcontent.XContentBuilder;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,11 +10,5 @@ import org.elasticsearch.common.xcontent.XContentBuilder;
  */
 public interface SearchService {
 
-    IndexResponse store(String index, String type, String id, XContentBuilder builder);
 
-    GetResponse get(String index, String type, String id);
-
-    DeleteResponse delete(String index, String type, String id);
-
-    SearchResponse search(String index, String type, String queryString);
 }
