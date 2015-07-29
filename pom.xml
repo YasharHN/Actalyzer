@@ -2,17 +2,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>Spring1</groupId>
-    <artifactId>Spring1</artifactId>
+    <groupId>com.yorksale.tools</groupId>
+    <artifactId>actalyzer</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>Spring1 Maven Webapp</name>
+    <name>User Activity Analyzer</name>
     <url>http://maven.apache.org</url>
 
     <developers>
         <developer>
             <name>Yashar HN</name>
             <email>foryashar@gmail.com</email>
+            <organization>YorkSale</organization>
+            <url>http://www.yorksale.com</url>
         </developer>
     </developers>
 
@@ -22,14 +24,33 @@
         <java.version.target>1.7</java.version.target>
 
         <spring.version>4.0.2.RELEASE</spring.version>
+        <spring-mock.version>2.0.8</spring-mock.version>
         <javax.servlet>3.0.1</javax.servlet>
         <junit>4.11</junit>
         <log4j.version>1.2.17</log4j.version>
         <slf4j.version>1.7.6</slf4j.version>
+        <spark.version>1.4.0</spark.version>
+        <jackson.version>2.4.4</jackson.version>
+        <common-lang3.version>3.2.1</common-lang3.version>
+        <common-io.version>2.4</common-io.version>
+        <mockito.version>1.9.5</mockito.version>
     </properties>
 
     <dependencies>
 
+        <!-- Apache Spark -->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_2.10</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_2.10</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+
+        <!-- SpringFramework -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -93,9 +114,10 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-mock</artifactId>
-            <version>2.0.8</version>
+            <version>${spring-mock.version}</version>
         </dependency>
 
+        <!-- JavaX -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -107,23 +129,41 @@
             <version>1</version>
         </dependency>
 
+        <!-- Apache -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.4</version>
+            <version>${common-io.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.2.1</version>
+            <version>${common-lang3.version}</version>
         </dependency>
 
+        <!-- JSON -->
         <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.13</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
+        <!-- Test -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -134,7 +174,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
-            <version>1.9.5</version>
+            <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -158,22 +198,10 @@
             <version>${slf4j.version}</version>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>org.slf4j</groupId>-->
-            <!--<artifactId>slf4j-simple</artifactId>-->
-            <!--<version>${slf4j.version}</version>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.elasticsearch</groupId>
-            <artifactId>elasticsearch</artifactId>
-            <version>1.0.1</version>
         </dependency>
 
     </dependencies>
