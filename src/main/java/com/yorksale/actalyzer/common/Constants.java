@@ -1,4 +1,4 @@
-package com.ys.spring1.common;
+package com.yorksale.actalyzer.common;
 
 public class Constants {
     public static final String REST_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss Z";

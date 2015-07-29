@@ -1,6 +1,5 @@
-package com.ys.spring1.service;
+package com.yorksale.actalyzer.service;
 
-import com.ys.spring1.service.impl.SearchServiceImpl;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;

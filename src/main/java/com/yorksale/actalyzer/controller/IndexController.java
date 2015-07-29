@@ -1,22 +1,13 @@
-package com.ys.spring1.controller;
+package com.yorksale.actalyzer.controller;
 
-import com.ys.spring1.service.SearchService;
+import com.yorksale.actalyzer.service.SearchService;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.Client;
-import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.ImmutableSettings;
-import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.xcontent.XContentBuilder;
-import org.elasticsearch.node.Node;
 import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.SearchHits;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +16,6 @@ import java.io.IOException;
 import java.util.*;
 
 import static org.elasticsearch.common.xcontent.XContentFactory.*;
-import static org.elasticsearch.node.NodeBuilder.nodeBuilder;
 
 /**
  * Created with IntelliJ IDEA.

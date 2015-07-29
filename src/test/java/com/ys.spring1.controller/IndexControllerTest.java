@@ -1,13 +1,12 @@
 package com.ys.spring1.controller;
 
 import com.ys.spring1.AppInitializer;
-import com.ys.spring1.config.AppConfig;
-import com.ys.spring1.config.WebMvcConfig;
+import com.yorksale.actalyzer.config.AppConfig;
+import com.yorksale.actalyzer.config.WebMvcConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -15,8 +14,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.inject.Inject;
-
-import java.util.Map;
 
 import static junit.framework.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

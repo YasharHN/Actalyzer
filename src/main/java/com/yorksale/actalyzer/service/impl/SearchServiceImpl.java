@@ -1,6 +1,6 @@
-package com.ys.spring1.service.impl;
+package com.yorksale.actalyzer.service.impl;
 
-import com.ys.spring1.service.SearchService;
+import com.yorksale.actalyzer.service.SearchService;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
@@ -12,7 +12,6 @@ import org.elasticsearch.common.settings.ImmutableSettings;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.xcontent.XContentBuilder;
-import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.QueryBuilders;
 
 import javax.annotation.PostConstruct;

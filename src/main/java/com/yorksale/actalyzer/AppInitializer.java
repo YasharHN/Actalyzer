@@ -1,6 +1,5 @@
-package com.ys.spring1;
+package com.yorksale.actalyzer;
 
-import org.springframework.web.util.Log4jConfigListener;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;

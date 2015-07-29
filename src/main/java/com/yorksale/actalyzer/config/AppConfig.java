@@ -1,7 +1,6 @@
-package com.ys.spring1.config;
+package com.yorksale.actalyzer.config;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.stereotype.Controller;
 
