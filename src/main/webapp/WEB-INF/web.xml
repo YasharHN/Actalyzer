@@ -6,6 +6,6 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 	      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
-    <display-name>Spring1 Web App</display-name>
+    <display-name>Actalyzer Web App</display-name>
 
 </web-app>

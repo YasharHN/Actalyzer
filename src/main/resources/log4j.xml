@@ -3,7 +3,7 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
     <appender name="logFile" class="org.apache.log4j.FileAppender">
-        <param name="File" value="/Users/yashar/Project/log/spring1/spring1.log" />
+        <param name="File" value="/var/log/actalyzer/actalyzer.log" />
         <param name="Threshold" value="INFO" />
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%t %-5p %c{2} - %m%n"/>

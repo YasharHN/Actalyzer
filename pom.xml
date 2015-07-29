@@ -207,7 +207,7 @@
     </dependencies>
 
     <build>
-        <finalName>Spring1</finalName>
+        <finalName>Actalyzer</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
