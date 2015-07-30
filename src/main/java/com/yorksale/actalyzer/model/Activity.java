@@ -1,8 +1,10 @@
 package com.yorksale.actalyzer.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,7 +20,7 @@ public class Activity implements Serializable {
     private static final long serialVersionUID = 6143389776406290066L;
     private String id;
     private String appId;
-    private Date dateTime;
+    private String dateTime;
     private String sessionId;
     private String ipAddress;
     private String type;
@@ -34,8 +36,23 @@ public class Activity implements Serializable {
     private String language;
     @JsonProperty("page")
     private String pageTitle;
-    @JsonProperty("results")
-    private List<Organization> organizations;
+
+    private String emailAddress;
+
+    private String userInfo;
+
+    private String productName;
+
+    private String mobileBrowser;
+    @JsonProperty("url")
+    private String targetURL;
+    @JsonProperty("topics")
+    private String topic;
+    @JsonProperty("sectors")
+    private String sector;
+
+//    @JsonProperty("results")
+//    private List<Organization> organizations;
 
 
     public String getId() {
@@ -54,11 +71,11 @@ public class Activity implements Serializable {
         this.appId = appId;
     }
 
-    public Date getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(Date dateTime) {
+    public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
 
@@ -143,6 +160,13 @@ public class Activity implements Serializable {
     }
 
     public String getUsername() {
+        if(StringUtils.isEmpty(this.username)){
+            if(StringUtils.isEmpty(this.emailAddress)){
+                return this.userInfo;
+            } else {
+                return this.emailAddress;
+            }
+        }
         return username;
     }
 
@@ -174,11 +198,68 @@ public class Activity implements Serializable {
         this.language = language;
     }
 
-    public List<Organization> getOrganizations() {
-        return organizations;
+//    public List<Organization> getOrganizations() {
+//        return organizations;
+//    }
+//
+//    public void setOrganizations(List<Organization> organizations) {
+//        this.organizations = organizations;
+//    }
+
+
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
-    public void setOrganizations(List<Organization> organizations) {
-        this.organizations = organizations;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(String userInfo) {
+        this.userInfo = userInfo;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getMobileBrowser() {
+        return mobileBrowser;
+    }
+
+    public void setMobileBrowser(String mobileBrowser) {
+        this.mobileBrowser = mobileBrowser;
+    }
+
+    public String getTargetURL() {
+        return targetURL;
+    }
+
+    public void setTargetURL(String targetURL) {
+        this.targetURL = targetURL;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public String getSector() {
+        return sector;
+    }
+
+    public void setSector(String sector) {
+        this.sector = sector;
     }
 }

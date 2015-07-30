@@ -3,12 +3,14 @@ package com.yorksale.actalyzer.controller;
 import com.yorksale.actalyzer.service.SparkService;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
 import java.io.IOException;
-import java.util.*;
+import java.util.Calendar;
 
 /**
  * Created by Yashar HN
@@ -34,10 +36,17 @@ public class IndexController {
         return Calendar.getInstance().getTime().toString();
     }
 
-    @RequestMapping(value = "/spark", method = RequestMethod.GET)
+    @RequestMapping(value = "/spark/load", method = RequestMethod.GET)
     @ResponseBody
-    public String showSample() throws IOException {
+    public String loadFile() throws IOException {
         sparkService.processJson("/home/yashar/development/testenv/test-tracking/t-data.json");
+        return "Loaded";
+    }
+
+    @RequestMapping(value = "/spark/query", method = RequestMethod.GET)
+    @ResponseBody
+    public String queryFile() throws IOException {
+        sparkService.queryJson("SELECT ipAddress FROM activity WHERE language = 'zh-CN'");
         return "Done";
     }
 }

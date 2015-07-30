@@ -1,8 +1,6 @@
 package com.yorksale.actalyzer.service;
 
 
-import java.io.Serializable;
-
 /**
  * Created by Yashar HN
  * Date: 29/07/15 2:55 PM
@@ -10,4 +8,6 @@ import java.io.Serializable;
 public interface SparkService {
 
     void processJson(String filePath);
+
+    void queryJson(String query);
 }
