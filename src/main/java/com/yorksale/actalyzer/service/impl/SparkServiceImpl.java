@@ -13,11 +13,15 @@ import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
 import org.apache.spark.storage.StorageLevel;
+import org.neo4j.graphdb.GraphDatabaseService;
+import org.neo4j.graphdb.factory.GraphDatabaseFactory;
+import org.neo4j.graphdb.factory.GraphDatabaseSettings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
@@ -55,6 +59,8 @@ public class SparkServiceImpl implements Serializable, SparkService {
 //    private JavaSparkContext sc;
 //    private SQLContext sqlContext;
 
+    GraphDatabaseService graphDatabaseService;
+
     @PostConstruct
     public void init() {
 
@@ -62,7 +68,7 @@ public class SparkServiceImpl implements Serializable, SparkService {
 
     @PreDestroy
     public void close() {
-
+        graphDatabaseService.shutdown();
     }
 
     public void processJson(String filePath) {
@@ -100,6 +106,8 @@ public class SparkServiceImpl implements Serializable, SparkService {
         dfActivity.registerTempTable("activity");
         dfActivity.persist(StorageLevel.DISK_ONLY());
         sqlContext.cacheTable("activity");
+
+
 //        dfActivity.select("id", "appId", "dateTime", "sessionId", "ipAddress", "type", "userAgent",
 //                "categoryId", "categoryName", "keywords", "companyID", "companyName", "referrer", "username",
 //                "source", "language", "pageTitle", "productName", "mobileBrowser", "targetURL", "topic", "sector")
@@ -109,9 +117,10 @@ public class SparkServiceImpl implements Serializable, SparkService {
     }
 
     public void queryJson(String query) {
-        DataFrame dfIP = sqlContext.sql("SELECT ipAddress, count(1) FROM activity group by ipAddress order by c1 desc");
-
-        dfIP.show(10);
+//        DataFrame dfIP = sqlContext.sql("SELECT username, count(1) FROM activity group by username order by c1 desc");
+        DataFrame dfIP = sqlContext.sql("SELECT topic, count(1) FROM activity group by topic");
+        //dfIP.show(50);
+        System.out.println(dfIP.count());
 
 //        List<Row> rows = dfIP.javaRDD().map(new Function<Row, Activity>() {
 //            public Row call(Row row) {
