@@ -206,7 +206,6 @@ public class Activity implements Serializable {
 //        this.organizations = organizations;
 //    }
 
-
     public String getEmailAddress() {
         return emailAddress;
     }
