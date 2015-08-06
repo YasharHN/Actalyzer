@@ -18,13 +18,16 @@ import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.neo4j.graphdb.factory.GraphDatabaseSettings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import scala.Function1;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.apache.spark.sql.functions.avg;
 import static org.apache.spark.sql.functions.count;
@@ -118,9 +121,19 @@ public class SparkServiceImpl implements Serializable, SparkService {
 
     public void queryJson(String query) {
 //        DataFrame dfIP = sqlContext.sql("SELECT username, count(1) FROM activity group by username order by c1 desc");
-        DataFrame dfIP = sqlContext.sql("SELECT topic, count(1) FROM activity group by topic");
-        //dfIP.show(50);
-        System.out.println(dfIP.count());
+        DataFrame df = sqlContext.sql("SELECT * FROM activity where categoryId<>''");
+        df = df.limit(50);
+        JavaRDD<Map<String, Object>> list = df.javaRDD().map(new Function<Row, Map<String, Object>>() {
+            @Override
+            public Map<String, Object> call(Row row) throws Exception {
+                Map<String, Object> map = new HashMap<>();
+                //row.schema().colu
+                return null;  //To change body of implemented methods use File | Settings | File Templates.
+            }
+        });
+        //System.out.println(row.fieldIndex("categoryId4"));
+
+        //System.out.println(dfIP.count());
 
 //        List<Row> rows = dfIP.javaRDD().map(new Function<Row, Activity>() {
 //            public Row call(Row row) {

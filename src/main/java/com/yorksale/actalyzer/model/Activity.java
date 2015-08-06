@@ -35,7 +35,7 @@ public class Activity implements Serializable {
     private String source;
     private String language;
     @JsonProperty("page")
-    private String pageTitle;
+    private String pageType;
 
     private String emailAddress;
 
@@ -182,12 +182,12 @@ public class Activity implements Serializable {
         this.source = source;
     }
 
-    public String getPageTitle() {
-        return pageTitle;
+    public String getPageType() {
+        return pageType;
     }
 
-    public void setPageTitle(String pageTitle) {
-        this.pageTitle = pageTitle;
+    public void setPageType(String pageType) {
+        this.pageType = pageType;
     }
 
     public String getLanguage() {
