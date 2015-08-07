@@ -28,17 +28,15 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     private static final Logger LOG = LoggerFactory.getLogger(WebMvcConfig.class);
 
-    private static JavaSparkContext sparkContext;
-
     @PostConstruct
     public void init() {
         LOG.info("init() ...");
     }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-    }
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+//    }
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -48,21 +46,20 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     public InternalResourceViewResolver getInternalResourceViewResolver() {
         InternalResourceViewResolver jspViewResolver = new InternalResourceViewResolver();
-        jspViewResolver.setViewClass(JstlView.class);
+        //jspViewResolver.setViewClass(JstlView.class);
         jspViewResolver.setPrefix("/view/");
         jspViewResolver.setSuffix(".jsp");
         jspViewResolver.setOrder(1);
-        jspViewResolver.setExposeContextBeansAsAttributes(true);
         return jspViewResolver;
     }
 
-    @Bean
-    public RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
-        return new RequestMappingHandlerMapping();
-    }
-
-    @Bean
-    public RequestMappingHandlerAdapter getRequestMappingHandlerAdapter() {
-        return new RequestMappingHandlerAdapter();
-    }
+//    @Bean
+//    public RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
+//        return new RequestMappingHandlerMapping();
+//    }
+//
+//    @Bean
+//    public RequestMappingHandlerAdapter getRequestMappingHandlerAdapter() {
+//        return new RequestMappingHandlerAdapter();
+//    }
 }

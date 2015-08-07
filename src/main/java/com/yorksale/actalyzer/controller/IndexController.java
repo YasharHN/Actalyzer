@@ -49,4 +49,9 @@ public class IndexController {
         sparkService.queryJson("SELECT ipAddress FROM activity WHERE language = 'zh-CN'");
         return "Done";
     }
+
+    @RequestMapping(value = "/spark/chart", method = RequestMethod.GET)
+    public ModelAndView drawChart() throws IOException {
+        return new ModelAndView("chart");
+    }
 }
