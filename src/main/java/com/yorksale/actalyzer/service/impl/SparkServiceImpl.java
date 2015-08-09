@@ -115,7 +115,7 @@ public class SparkServiceImpl implements Serializable, SparkService {
         List<DataRow> list = new ArrayList<>();
         DataFrame df = sqlContext.sql(query);
 //        DataFrame df = sqlContext.sql("SELECT * FROM activity where categoryId<>''");
-        final String colLabel = "username";
+        final String colLabel = "label";
         final String colValue = "c1";
         try{
             list= df.limit(10).javaRDD().map(new Function<Row, DataRow>() {

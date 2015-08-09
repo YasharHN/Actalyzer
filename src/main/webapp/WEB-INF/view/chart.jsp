@@ -70,7 +70,7 @@
   <div class="row">
     <div class="col-lg-4">
       <div class="form-group">
-        <textarea class="form-control" rows="5" id="txtQuery">SELECT username, count(1) FROM activity group by username order by c1 desc</textarea>
+        <textarea class="form-control" rows="5" id="txtQuery">SELECT username as label, count(1) FROM activity group by username order by c1 desc</textarea>
       </div>
       <div class="form-group">
         <button class="btn btn-default" ng-click="drawChart()" type="button">Go</button>
