@@ -98,13 +98,6 @@
 <script type="text/javascript">
   /* <![CDATA[ */
 
-//  var dataset = [
-//    { label: 'Abulia', value: 11},
-//    { label: 'Betelgeuse', value: 22},
-//    { label: 'Cantaloupe', value: 33},
-//    { label: 'Dijkstra', value: 44}
-//  ];
-
   var divChart = '#chart';
 
   angular.module('actalyzerApp', [])
