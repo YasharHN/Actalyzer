@@ -1,11 +1,24 @@
 /**
  * Created by Yashar on 2015-08-08.
  */
+
+if (!String.prototype.format) {
+    String.prototype.format = function() {
+        var args = arguments;
+        return this.replace(/{(\d+)}/g, function(match, number) {
+            return typeof args[number] != 'undefined'
+                ? args[number]
+                : match
+                ;
+        });
+    };
+}
+
 function drawPieChart(divChart, dataset){
     $(divChart + " svg").remove();
     // compute total
-    tot = 0;
-    dataset.forEach(function(e){ tot += e.value; });
+    total = 0;
+    dataset.forEach(function(e){ total += e.value; });
     var w = $(divChart).width();
     var h = $(divChart).height();
     var r = Math.min(w, h) /2;
@@ -40,7 +53,7 @@ function drawPieChart(divChart, dataset){
         d.innerRadius = 0;
         d.outerRadius = r;
         return "translate(" + arc.centroid(d) + ")";}).attr("text-anchor", "middle").text( function(d, i) {
-            return (dataset[i].value / tot ) * 100 > 10 ? ((dataset[i].value / tot ) * 100).toFixed(1) + "%" : "";
+            return (dataset[i].value / total ) * 100 > 10 ? ((dataset[i].value / total ) * 100).toFixed(1) + "%" : "";
         }
     ).attr("fill","#fff")
         .classed("slice-label",true);
@@ -50,5 +63,6 @@ function drawPieChart(divChart, dataset){
         .attr("transform","translate(50,50)")
         .style("font-size","12px")
         .call(d3.legend);
+    return total;
 
 }

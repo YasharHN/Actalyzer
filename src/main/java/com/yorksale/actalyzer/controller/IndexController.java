@@ -42,9 +42,15 @@ public class IndexController {
 
     @RequestMapping(value = "/spark/load", method = RequestMethod.GET)
     @ResponseBody
-    public String loadFile() throws IOException {
-        sparkService.processJson("/Users/admin/Projects/big-data-course/project/data/t-data.json");
-        return "Loaded";
+    public DataRow loadFile(@RequestParam(value = "path", required = true) String path) throws IOException {
+        DataRow dr = new DataRow();
+        try {
+            sparkService.processJson(path);
+            dr.setLabel("LOADED");
+        } catch (Exception ex){
+            dr.setLabel("ERROR: " + ex.getMessage());
+        }
+        return dr;
     }
 
     @RequestMapping(value = "/spark/query", method = RequestMethod.GET)
