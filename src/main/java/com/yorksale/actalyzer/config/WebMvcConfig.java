@@ -7,8 +7,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
 import javax.annotation.PostConstruct;
 
@@ -28,10 +32,10 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         LOG.info("init() ...");
     }
 
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-//    }
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+    }
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -41,20 +45,20 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     public InternalResourceViewResolver getInternalResourceViewResolver() {
         InternalResourceViewResolver jspViewResolver = new InternalResourceViewResolver();
-        //jspViewResolver.setViewClass(JstlView.class);
+        jspViewResolver.setViewClass(JstlView.class);
         jspViewResolver.setPrefix("/WEB-INF/view/");
         jspViewResolver.setSuffix(".jsp");
         jspViewResolver.setOrder(1);
         return jspViewResolver;
     }
 
-//    @Bean
-//    public RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
-//        return new RequestMappingHandlerMapping();
-//    }
-//
-//    @Bean
-//    public RequestMappingHandlerAdapter getRequestMappingHandlerAdapter() {
-//        return new RequestMappingHandlerAdapter();
-//    }
+    @Bean
+    public RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
+        return new RequestMappingHandlerMapping();
+    }
+
+    @Bean
+    public RequestMappingHandlerAdapter getRequestMappingHandlerAdapter() {
+        return new RequestMappingHandlerAdapter();
+    }
 }

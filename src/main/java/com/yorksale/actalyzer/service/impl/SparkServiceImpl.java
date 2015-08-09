@@ -3,7 +3,9 @@ package com.yorksale.actalyzer.service.impl;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yorksale.actalyzer.model.Activity;
+import com.yorksale.actalyzer.model.DataRow;
 import com.yorksale.actalyzer.service.SparkService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -20,8 +22,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Yashar HN
@@ -110,18 +111,36 @@ public class SparkServiceImpl implements Serializable, SparkService {
         //System.out.println("Result: " + dfActivity.count());
     }
 
-    public void queryJson(String query) {
-//        DataFrame dfIP = sqlContext.sql("SELECT username, count(1) FROM activity group by username order by c1 desc");
-        DataFrame df = sqlContext.sql("SELECT * FROM activity where categoryId<>''");
-        df = df.limit(50);
-        JavaRDD<Map<String, Object>> list = df.javaRDD().map(new Function<Row, Map<String, Object>>() {
-            @Override
-            public Map<String, Object> call(Row row) throws Exception {
-                Map<String, Object> map = new HashMap<>();
-                //row.schema().colu
-                return null;  //To change body of implemented methods use File | Settings | File Templates.
-            }
-        });
+    public List<DataRow> queryJson(String query) {
+        List<DataRow> list = new ArrayList<>();
+        DataFrame df = sqlContext.sql(query);
+//        DataFrame df = sqlContext.sql("SELECT * FROM activity where categoryId<>''");
+        final String colLabel = "username";
+        final String colValue = "c1";
+        try{
+            list= df.limit(10).javaRDD().map(new Function<Row, DataRow>() {
+                @Override
+                public DataRow call(Row row) throws Exception {
+                    DataRow dataRow = new DataRow();
+                    dataRow.setLabel((String) row.getAs(colLabel));
+                    if(StringUtils.isEmpty(dataRow.getLabel())){
+                        return null;
+                    }
+                    dataRow.setValue((Number) row.getAs(colValue));
+                    return dataRow;
+                }
+            }).collect();
+
+        } catch (Exception ex){
+            LOG.error(ex.getMessage());
+        }
+
+        int i=1;
+        list.removeAll(Collections.singleton(null));
+        for(DataRow dataRow: list){
+            dataRow.setPos(i++);
+        }
+        return list;
         //System.out.println(row.fieldIndex("categoryId4"));
 
         //System.out.println(dfIP.count());

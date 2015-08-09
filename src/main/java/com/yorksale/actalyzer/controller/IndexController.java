@@ -1,16 +1,20 @@
 package com.yorksale.actalyzer.controller;
 
+import com.yorksale.actalyzer.model.DataRow;
 import com.yorksale.actalyzer.service.SparkService;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by Yashar HN
@@ -45,9 +49,9 @@ public class IndexController {
 
     @RequestMapping(value = "/spark/query", method = RequestMethod.GET)
     @ResponseBody
-    public String queryFile() throws IOException {
-        sparkService.queryJson("SELECT ipAddress FROM activity WHERE language = 'zh-CN'");
-        return "Done";
+    public List<DataRow> queryFile(@RequestParam(value = "q", required = true) String query) throws IOException {
+        List<DataRow> dataRows = sparkService.queryJson(query);
+        return dataRows;
     }
 
     @RequestMapping(value = "/spark/chart", method = RequestMethod.GET)

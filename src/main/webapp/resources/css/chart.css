@@ -1,0 +1,19 @@
+.legend rect {
+    fill:white;
+    opacity:0.4;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.legend-items {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+path.slice {
+    transition: fill-opacity .4s ease;
+}
+
+.slice-label {
+    cursor: pointer;
+}
