@@ -19,8 +19,6 @@ public class AppInitializer implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext context = getContext();
         servletContext.addListener(new ContextLoaderListener(context));
-//        servletContext.addListener(new Log4jConfigListener());
-//        servletContext.setInitParameter("log4jConfigLocation", "classpath:log4j.xml");
 
         web(servletContext, context);
     }

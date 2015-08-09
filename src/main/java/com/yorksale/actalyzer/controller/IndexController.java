@@ -39,7 +39,7 @@ public class IndexController {
     @RequestMapping(value = "/spark/load", method = RequestMethod.GET)
     @ResponseBody
     public String loadFile() throws IOException {
-        sparkService.processJson("/home/yashar/development/testenv/test-tracking/t-data.json");
+        sparkService.processJson("/Users/admin/Projects/big-data-course/project/data/t-data.json");
         return "Loaded";
     }
 

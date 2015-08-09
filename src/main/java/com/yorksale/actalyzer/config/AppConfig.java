@@ -27,7 +27,7 @@ public class AppConfig {
     @Bean(name = "graphDatabaseService")
     public GraphDatabaseService GraphDatabaseService() {
         return new GraphDatabaseFactory().newEmbeddedDatabaseBuilder(
-                "/home/yashar/development/testenv/test-tracking/neo4j.db" )
+                "/Users/admin/Projects/big-data-course/project/data/neo4j.db" )
                 .setConfig( GraphDatabaseSettings.read_only, "false" )
                 .newGraphDatabase();
     }
