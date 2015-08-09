@@ -65,7 +65,6 @@
     </div>
   </div>
 
-
   <form name="textForm" ng-submit="" >
   <div class="row">
     <div class="col-lg-4">
