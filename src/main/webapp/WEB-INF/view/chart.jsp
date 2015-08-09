@@ -61,42 +61,39 @@
   <div class="row">
     <div class="col-lg-4">
         <div class="form-group">
-            <div class="row">
-                <div class="col-lg-6">
-                    <label for="selAttribute">Attribute:</label>
-                    <select class="form-control" id="selAttribute">
-                        <option>username</option>
-                        <option>ipAddress</option>
-                        <option>type</option>
-                        <option>categoryId</option>
-                        <option>categoryName</option>
-                        <option>companyID</option>
-                        <option>companyName</option>
-                        <option>language</option>
-                        <option>pageType</option>
-                        <option>productName</option>
-                        <option>mobileBrowser</option>
-                        <option>targetURL</option>
-                        <option>topic</option>
-                        <option>sector</option>
-                    </select>
-
-                </div>
-                <div class="col-lg-6">
-                    <input type="date" name="bday" max="1979-12-31"><br><br>
-                    Enter a date after 2000-01-01:<br>
-                    <input type="date" name="bday" min="2000-01-02">
-                </div>
-            </div>
+            <label for="selAttribute">Attribute:</label>
+            <select class="form-control" id="selAttribute">
+                <option>username</option>
+                <option>ipAddress</option>
+                <option>type</option>
+                <option>categoryId</option>
+                <option>categoryName</option>
+                <option>companyID</option>
+                <option>companyName</option>
+                <option>language</option>
+                <option>pageType</option>
+                <option>productName</option>
+                <option>mobileBrowser</option>
+                <option>targetURL</option>
+                <option>topic</option>
+                <option>sector</option>
+            </select>
         </div>
-      <div class="form-group">
-        <textarea class="form-control" rows="5" id="txtQuery">SELECT username as label, count(1) FROM activity group by username order by c1 desc</textarea>
-      </div>
-      <div class="form-group">
+        <div class="form-group">
+            <label for="fromDate">From Date:</label>
+            <input type="date" class="form-control" id="fromDate" max="2015-08-01" value="2000-01-01">
+        </div>
+        <div class="form-group">
+            <label for="toDate">To Date:</label>
+            <input type="date" class="form-control" id="toDate" min="2010-01-01" value="2016-01-01">
+        </div>
+        <div class="form-group">
+            <textarea class="form-control" rows="5" id="txtQuery">SELECT username as label, count(1) FROM activity group by username order by c1 desc</textarea>
+        </div>
+        <div class="form-group">
           <button class="btn btn-default" onclick="generateQuery()" type="button">Generate</button>
           <button class="btn btn-default" ng-click="drawChart()" type="button">Analyze</button>
-      </div>
-
+        </div>
         <div class="form-group">
             Total: <label class="">{{totalResult}}</label>
         </div>
