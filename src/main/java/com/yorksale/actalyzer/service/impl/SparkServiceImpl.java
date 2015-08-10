@@ -22,7 +22,9 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by Yashar HN
@@ -40,19 +42,12 @@ public class SparkServiceImpl implements Serializable, SparkService {
     private static SQLContext sqlContext;
 
     static {
-//        try {
-            SparkConf conf = new SparkConf()
-                    .setAppName("com.yorksale.actalyzer")
-                    .setMaster("local");
-            sparkContext = new JavaSparkContext(conf);
-            sqlContext = new SQLContext(sparkContext);
-//        } catch (ClassNotFoundException e) {
-//            LOG.error("JavaSparkContext is failed");
-//        }
-
+        SparkConf conf = new SparkConf()
+                .setAppName("com.yorksale.actalyzer")
+                .setMaster("local");
+        sparkContext = new JavaSparkContext(conf);
+        sqlContext = new SQLContext(sparkContext);
     }
-//    private JavaSparkContext sc;
-//    private SQLContext sqlContext;
 
     GraphDatabaseService graphDatabaseService;
 
@@ -81,7 +76,7 @@ public class SparkServiceImpl implements Serializable, SparkService {
                                 Activity activityDoc = OBJ_MAPPER.treeToValue(doc, Activity.class);
                                 return activityDoc;
                             } catch (Exception ex){
-                                LOG.error("",ex);
+                                LOG.error("Json Mapping Error",ex);
                             }
                         }
                         return null;
@@ -95,7 +90,6 @@ public class SparkServiceImpl implements Serializable, SparkService {
                 });
 
         rddActivity.persist(StorageLevel.DISK_ONLY());
-
         sqlContext.clearCache();
         DataFrame dfActivity = sqlContext.createDataFrame(rddActivity, Activity.class);
         dfActivity.registerTempTable("activity");

@@ -1,19 +1,15 @@
 package com.yorksale.actalyzer.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.joda.ser.DateTimeSerializer;
-import com.yorksale.actalyzer.common.DateToLongSerializer;
+import com.yorksale.actalyzer.common.DateToTimestampSerializer;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 
-import javax.xml.crypto.Data;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by Yashar HN
@@ -25,14 +21,11 @@ public class Activity implements Serializable {
     private static final long serialVersionUID = 6143389776406290066L;
     private String id;
     private String appId;
-
     @JsonProperty("dateTime")
-    @JsonDeserialize(using = DateToLongSerializer.class)
+    @JsonDeserialize(using = DateToTimestampSerializer.class)
     private Long timestamp;
-
     @JsonIgnore
     private DateTime dateTime;
-
     private String sessionId;
     private String ipAddress;
     private String type;
@@ -48,13 +41,9 @@ public class Activity implements Serializable {
     private String language;
     @JsonProperty("page")
     private String pageType;
-
     private String emailAddress;
-
     private String userInfo;
-
     private String productName;
-
     private String mobileBrowser;
     @JsonProperty("url")
     private String targetURL;
@@ -62,10 +51,6 @@ public class Activity implements Serializable {
     private String topic;
     @JsonProperty("sectors")
     private String sector;
-
-//    @JsonProperty("results")
-//    private List<Organization> organizations;
-
 
     public String getId() {
         return id;
@@ -174,17 +159,6 @@ public class Activity implements Serializable {
         this.referrer = referrer;
     }
 
-    public String getUsername() {
-        if(StringUtils.isEmpty(this.username)){
-            if(StringUtils.isEmpty(this.emailAddress)){
-                return this.userInfo;
-            } else {
-                return this.emailAddress;
-            }
-        }
-        return username;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -212,14 +186,6 @@ public class Activity implements Serializable {
     public void setLanguage(String language) {
         this.language = language;
     }
-
-//    public List<Organization> getOrganizations() {
-//        return organizations;
-//    }
-//
-//    public void setOrganizations(List<Organization> organizations) {
-//        this.organizations = organizations;
-//    }
 
     public String getEmailAddress() {
         return emailAddress;
@@ -275,6 +241,17 @@ public class Activity implements Serializable {
 
     public void setSector(String sector) {
         this.sector = sector;
+    }
+
+    public String getUsername() {
+        if(StringUtils.isEmpty(this.username)){
+            if(StringUtils.isEmpty(this.emailAddress)){
+                return this.userInfo;
+            } else {
+                return this.emailAddress;
+            }
+        }
+        return username;
     }
 
     public Integer getMonth() {

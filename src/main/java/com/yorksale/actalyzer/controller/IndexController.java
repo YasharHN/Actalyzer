@@ -13,8 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.List;
 
 /**
