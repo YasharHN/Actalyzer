@@ -2,5 +2,5 @@
 Web User Activity Log Analyzer
 ## Big Data Tools and Techniques Course (UoT)
 #### Author: Yashar Hassanzadeh Nadery 
-##### Aug 2015
+Aug 2015
 
