@@ -1,9 +1,11 @@
 package com.yorksale.actalyzer.controller;
 
+import com.fasterxml.jackson.datatype.joda.ser.DateTimeSerializer;
 import com.yorksale.actalyzer.AppInitializer;
 import com.yorksale.actalyzer.config.AppConfig;
 import com.yorksale.actalyzer.config.WebMvcConfig;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +16,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.inject.Inject;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -32,10 +39,10 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @WebAppConfiguration
 public class IndexControllerTest {
 
-    @Inject
+    //@Inject
     protected WebApplicationContext wac;
 
-    @Inject
+    //@Inject
     protected ObjectMapper objectMapper;
 
     private MockMvc mockMvc;
@@ -51,13 +58,5 @@ public class IndexControllerTest {
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString();
         assertNotNull(result);
-    }
-
-    @Test
-    public void testShowSample() throws Exception {
-        mockMvc.perform(get("/sample"))
-                .andExpect(status().isOk())
-                .andDo(print())
-                .andExpect(jsonPath("LOCAL_TIME").exists());
     }
 }

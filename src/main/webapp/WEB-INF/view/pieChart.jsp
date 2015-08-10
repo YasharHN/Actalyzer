@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Actalyzer</title>
+    <title>Actalyzer - Pie Chart</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <link rel="stylesheet" href="http://static.yorksale.com/assets/css/bootstrap.min.css" media="screen">
@@ -35,8 +35,8 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">Link</a></li>
+                    <li class="active"><a href="/spark/pie-chart">Pie Chart</a></li>
+                    <li><a href="/spark/time-chart">Time Chart</a></li>
                 </ul>
                 <form class="navbar-form navbar-left" role="search">
                     <div class="form-group">
@@ -61,7 +61,7 @@
   <div class="row">
     <div class="col-lg-4">
         <div class="form-group">
-            <label for="selAttribute">Attribute:</label>
+            <label for="selAttribute">Index:</label>
             <select class="form-control" id="selAttribute">
                 <option>username</option>
                 <option>ipAddress</option>
@@ -132,22 +132,26 @@
       $('#imgLoader').addClass('hide');
   }
 
-  var BASE_PIE_CHART_QUERY = "SELECT {0} as label, count(1) FROM activity group by {0} order by c1 desc";
+  var BASE_PIE_CHART_QUERY = "SELECT {0} as label, count(1) FROM activity "
+                  + "where timestamp>={1} and timestamp<={2} "
+                  + "group by {0} order by c1 desc";
 
   $(function() {
 
   });
 
   function generateQuery(){
-      var attr = $('#selAttribute').val();
-      $('#txtQuery').text( BASE_PIE_CHART_QUERY.format(attr) );
+      var fromDate = moment($('#fromDate').val()).valueOf();
+      var toDate = moment($('#toDate').val()).valueOf();
+      var attrName = $('#selAttribute').val();
+      $('#txtQuery').text( BASE_PIE_CHART_QUERY.format(attrName, fromDate, toDate) );
   }
 
   angular.module('actalyzerApp', [])
     .controller('appCtrl', ['$scope', '$http', function($scope, $http) {
               $scope.drawChart = function () {
                   startLoader();
-                  $http.get('/spark/query?q=' + $('#txtQuery').val()).
+                  $http.get('/spark/query?t=PIE&q=' + $('#txtQuery').val()).
                           then(function (response) {
                               stopLoader();
                               $scope.totalResult = drawPieChart(divChart, response.data);

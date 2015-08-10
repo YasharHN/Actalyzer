@@ -13,5 +13,7 @@ public interface SparkService {
 
     void processJson(String filePath);
 
-    List<DataRow> queryJson(String query);
+    List<DataRow> pieQuery(String query);
+
+    List<DataRow> timeQuery(String query);
 }

@@ -1,11 +1,19 @@
 package com.yorksale.actalyzer.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.joda.ser.DateTimeSerializer;
+import com.yorksale.actalyzer.common.DateToLongSerializer;
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
 
+import javax.xml.crypto.Data;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Yashar HN
@@ -17,7 +25,14 @@ public class Activity implements Serializable {
     private static final long serialVersionUID = 6143389776406290066L;
     private String id;
     private String appId;
-    private String dateTime;
+
+    @JsonProperty("dateTime")
+    @JsonDeserialize(using = DateToLongSerializer.class)
+    private Long timestamp;
+
+    @JsonIgnore
+    private DateTime dateTime;
+
     private String sessionId;
     private String ipAddress;
     private String type;
@@ -68,12 +83,15 @@ public class Activity implements Serializable {
         this.appId = appId;
     }
 
-    public String getDateTime() {
-        return dateTime;
+    public Long getTimestamp() {
+        return timestamp;
     }
 
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+        if(timestamp!=null){
+            this.dateTime = new DateTime(timestamp);
+        }
     }
 
     public String getSessionId() {
@@ -257,5 +275,21 @@ public class Activity implements Serializable {
 
     public void setSector(String sector) {
         this.sector = sector;
+    }
+
+    public Integer getMonth() {
+        return (this.dateTime!=null)?dateTime.getMonthOfYear(): null;
+    }
+
+    public Integer getDay() {
+        return (this.dateTime!=null)?dateTime.getDayOfMonth(): null;
+    }
+
+    public Integer getWeekDay() {
+        return (this.dateTime!=null)?dateTime.getDayOfWeek(): null;
+    }
+
+    public Integer getHour() {
+        return (this.dateTime!=null)?dateTime.getHourOfDay(): null;
     }
 }

@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 public class DataRow implements Serializable {
     private String label;
+    private Number label2;
     private Number value;
     private Integer pos;
 
@@ -16,6 +17,14 @@ public class DataRow implements Serializable {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public Number getLabel2() {
+        return label2;
+    }
+
+    public void setLabel2(Number label2) {
+        this.label2 = label2;
     }
 
     public Number getValue() {

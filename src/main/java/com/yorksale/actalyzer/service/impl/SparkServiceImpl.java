@@ -101,20 +101,11 @@ public class SparkServiceImpl implements Serializable, SparkService {
         dfActivity.registerTempTable("activity");
         dfActivity.persist(StorageLevel.DISK_ONLY());
         sqlContext.cacheTable("activity");
-
-
-//        dfActivity.select("id", "appId", "dateTime", "sessionId", "ipAddress", "type", "userAgent",
-//                "categoryId", "categoryName", "keywords", "companyID", "companyName", "referrer", "username",
-//                "source", "language", "pageTitle", "productName", "mobileBrowser", "targetURL", "topic", "sector")
-//                .write().format("json")
-//                .save("/home/yashar/development/testenv/test-tracking/output.json");
-        //System.out.println("Result: " + dfActivity.count());
     }
 
-    public List<DataRow> queryJson(String query) {
+    public List<DataRow> pieQuery(String query) {
         List<DataRow> list = new ArrayList<>();
         DataFrame df = sqlContext.sql(query);
-//        DataFrame df = sqlContext.sql("SELECT * FROM activity where categoryId<>''");
         final String colLabel = "label";
         final String colValue = "c1";
         try{
@@ -141,20 +132,38 @@ public class SparkServiceImpl implements Serializable, SparkService {
             dataRow.setPos(i++);
         }
         return list;
-        //System.out.println(row.fieldIndex("categoryId4"));
-
-        //System.out.println(dfIP.count());
-
-//        List<Row> rows = dfIP.javaRDD().map(new Function<Row, Activity>() {
-//            public Row call(Row row) {
-//                System.out.println(row.toString());
-//                return ro
-//            }
-//        }).collect();
-
-//        for(Activity activity:activities){
-//            System.out.println(activity.getIpAddress());
-//        }
     }
 
+    public List<DataRow> timeQuery(String query) {
+        List<DataRow> list = new ArrayList<>();
+        DataFrame df = sqlContext.sql(query);
+        final String colLabel = "label";
+        final String colLabel2 = "label2";
+        final String colValue = "c1";
+        try{
+            list= df.javaRDD().map(new Function<Row, DataRow>() {
+                @Override
+                public DataRow call(Row row) throws Exception {
+                    DataRow dataRow = new DataRow();
+                    dataRow.setLabel((String) row.getAs(colLabel));
+                    if(StringUtils.isEmpty(dataRow.getLabel())){
+                        return null;
+                    }
+                    dataRow.setLabel2((Integer) row.getAs(colLabel2));
+                    dataRow.setValue((Number) row.getAs(colValue));
+                    return dataRow;
+                }
+            }).collect();
+
+        } catch (Exception ex){
+            LOG.error(ex.getMessage());
+        }
+
+        int i=1;
+        list.removeAll(Collections.singleton(null));
+        for(DataRow dataRow: list){
+            dataRow.setPos(i++);
+        }
+        return list;
+    }
 }
