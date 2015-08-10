@@ -4,4 +4,4 @@ Web User Activity Log Analyzer using Java and Apache Spark
 #### Author: Yashar Hassanzadeh Nadery 
 Aug 2015
 
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Actalyzer App"
+[https://goo.gl/39sXLV]
