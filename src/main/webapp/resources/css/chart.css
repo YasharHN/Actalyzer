@@ -19,19 +19,16 @@ path.slice {
 }
 
 
-.axis path,
-.axis line {
+.axis path {
     fill: none;
-    stroke: #000;
+    stroke: #777;
     shape-rendering: crispEdges;
 }
-
-.x.axis path {
-    display: none;
+.axis text {
+    font-family: Lato;
+    font-size: 13px;
 }
-
-.line {
-    fill: none;
-    stroke: steelblue;
-    stroke-width: 1.5px;
+.legend {
+    font-size: 14px;
+    font-weight: bold;
 }

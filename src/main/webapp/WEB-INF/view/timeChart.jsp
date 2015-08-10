@@ -59,7 +59,7 @@
 
     <form name="textForm" ng-submit="" >
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <div class="form-group">
                     <label for="selAttribute">Index:</label>
                     <select class="form-control" id="selAttribute">
@@ -77,21 +77,16 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" rows="5" id="txtQuery">SELECT type as label, month as label2, count(1) as c1 FROM activity group by type,month</textarea>
+                    <textarea class="form-control" rows="5" id="txtQuery">SELECT type as label, hour as label2, count(1) as c1 FROM activity group by type,hour</textarea>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-default" onclick="generateQuery()" type="button">Generate</button>
                     <button class="btn btn-default" ng-click="drawChart()" type="button">Analyze</button>
                 </div>
-                <div class="form-group">
-                    Total: <label class="">{{totalResult}}</label>
-                </div>
-
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 <div class="form-group">
-                    <div id="chart" style="height:400px;" data-drilldown-destination="filelist_by_category"
-                         data-drilldown-key="atime" ></div>
+                    <div id="chart" style="height:500px;"></div>
                 </div>
             </div>
         </div>
@@ -131,6 +126,7 @@
     function generateQuery(){
         var attrName = $('#selAttribute').val();
         var selView = $('#selView').val();
+        console.log(attrName);
         $('#txtQuery').text( BASE_PIE_CHART_QUERY.format(attrName, selView) );
     }
 
@@ -141,7 +137,7 @@
                     $http.get('/spark/query?t=TIME&q=' + $('#txtQuery').val()).
                             then(function (response) {
                                 stopLoader();
-                                $scope.totalResult = drawTimeChart(divChart, response.data);
+                                drawTimeChart(divChart, response.data);
 
                             }, function (response) {
                                 stopLoader();
