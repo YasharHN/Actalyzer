@@ -24,11 +24,11 @@ public class AppConfig {
         return new ObjectMapper();
     }
 
-    @Bean(name = "graphDatabaseService")
-    public GraphDatabaseService GraphDatabaseService() {
-        return new GraphDatabaseFactory().newEmbeddedDatabaseBuilder(
-                "/Users/admin/Projects/big-data-course/project/data/neo4j.db" )
-                .setConfig( GraphDatabaseSettings.read_only, "false" )
-                .newGraphDatabase();
-    }
+//    @Bean(name = "graphDatabaseService")
+//    public GraphDatabaseService GraphDatabaseService() {
+//        return new GraphDatabaseFactory().newEmbeddedDatabaseBuilder(
+//                "/Users/admin/Projects/big-data-course/project/data/neo4j.db" )
+//                .setConfig( GraphDatabaseSettings.read_only, "false" )
+//                .newGraphDatabase();
+//    }
 }

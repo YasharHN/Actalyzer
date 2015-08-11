@@ -49,7 +49,7 @@ public class SparkServiceImpl implements Serializable, SparkService {
         sqlContext = new SQLContext(sparkContext);
     }
 
-    GraphDatabaseService graphDatabaseService;
+    //GraphDatabaseService graphDatabaseService;
 
     @PostConstruct
     public void init() {
@@ -58,7 +58,7 @@ public class SparkServiceImpl implements Serializable, SparkService {
 
     @PreDestroy
     public void close() {
-        graphDatabaseService.shutdown();
+        //graphDatabaseService.shutdown();
     }
 
     public void processJson(String filePath) {
